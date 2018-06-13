@@ -1,7 +1,7 @@
 /*
 * MEM Module
 *
-* Rayaban Campos & Daniela Rivas
+* Daniela Rivas
 */
 
 /*
@@ -55,8 +55,24 @@ mem_stall_o);
 
   output mem_stall_o;
 
-  wire x;
+  wire a;
+  wire b;
+  wire c;
+  wire d;
+  wire e;
 
-WBU lsu(.clk_i(clk_i), wbm_dat_i(x))
+  WBU lsu(.clk_i(clk_i), .rst_i(rst_i), wbs_sel_o(a), wbm_sel_i(a),
+  wbs_addr_o(b), wbm_addr_i(b), wbs_dat_o(c), wbm_dat_i(c), wbm_dat_o(d),
+  wbs_dat_i(d), wbm_err_o(e), wbs_err_i(e));
+
+  LSUcomb lsucomb(.clk_i(clk_i), .rst_i(rst_i),)
+
+  /*
+  * wbs_sel_o = wbm_sel_i;
+  * wbs_addr_o = wbm_addr_i;
+  * wbs_dat_o = wbm_dat_i;
+  * wbm_dat_o = wbs_dat_i;
+  * wbm_err_o = wbs_err_i;
+  */
 
 endmodule
